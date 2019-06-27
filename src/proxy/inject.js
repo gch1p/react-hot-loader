@@ -68,9 +68,8 @@ function mergeComponents(ProxyComponent, NextComponent, InitialComponent, lastIn
         const isFunction = nextString.indexOf('function') >= 0 || isArrow;
         const referToThis = nextString.indexOf('this') >= 0;
         if (
-          nextString !== String(prevAttr) ||
-          (injectedBefore && nextString !== String(injectedBefore)) ||
-          (isArrow && referToThis)
+          !isArrow &&
+          (nextString !== String(prevAttr) || (injectedBefore && nextString !== String(injectedBefore)))
         ) {
           if (!hasRegenerate) {
             if (!isFunction) {
